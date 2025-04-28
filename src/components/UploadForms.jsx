@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import server_url from '../services/ServerUrl';
 
-const UploadForm = () => {
+
+const UploadForms = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
@@ -40,7 +42,7 @@ const UploadForm = () => {
     formData.append('model', file);
     
     try {
-      await axios.post('http://localhost:5000/api/models', formData, {
+      await axios.post(`${server_url}/api/models`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -131,4 +133,4 @@ const UploadForm = () => {
   );
 };
 
-export default UploadForm;
+export default UploadForms;
